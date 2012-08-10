@@ -3,7 +3,11 @@
 # Get a list of todos
 app.get '/api/todos', (req, res) ->
 	console.log "app get was called!"
-	res.json [{}]
+	Todo.find {}, [], {sort:[["created_at", -1]]}, (err, @todos) =>
+		if err?
+			res.json(err, 500)
+		else
+			res.json @todos
 
 # Post a list of todos
 app.post '/api/todos', (req, res) ->
