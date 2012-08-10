@@ -1,5 +1,9 @@
 # this controller handles server requests for todos
 
+# require all the responders here:
+for name in ["index", "create", "show", "update", "destroy"]
+	require("#{__dirname}/responders/#{name}_responder")
+
 # Get a list of todos
 app.get '/api/todos', (req, res) ->
 	console.log "Get list of todos was called!"
