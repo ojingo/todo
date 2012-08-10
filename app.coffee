@@ -1,17 +1,19 @@
-# Setup Express.js
-global.express = require('express')
-global.app = express()
+# Setup Express.js:
+global.express = require("express")
+global.app = app = express.createServer()
+
 require("#{__dirname}/src/configuration")
 
-# Set up the database
+# Set up the Database:
 require("#{__dirname}/src/models/database")
 
-# Set up a route for the homepage:
-require("#{__dirname}/src/controllers/home_controller")
-
-# Set up todo controller:
+# Require the Todo model and controller:
+require("#{__dirname}/src/models/todo")
 require("#{__dirname}/src/controllers/todos_controller")
+
+# Set up a routing for our homepage:
+require("#{__dirname}/src/controllers/home_controller")
 
 # Start server:
 app.listen(3000)
-console.log(" Express server listening on port %s 3000 in %s mode", app.port, app.settings.env)
+console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env)
