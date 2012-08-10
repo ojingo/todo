@@ -2,17 +2,23 @@
 
 # Get a list of todos
 app.get '/api/todos', (req, res) ->
-	console.log "app get was called!"
+	console.log "Get list of todos was called!"
 	Todo.find {}, [], {sort:[["created_at", -1]]}, (err, @todos) =>
 		if err?
 			res.json(err, 500)
 		else
 			res.json @todos
 
-# Post a list of todos
+# Create a new todo
 app.post '/api/todos', (req, res) ->
-	res.json {}
-
+	console.log "Creating a new todo!"
+	@todo = new Todo(req.param('todo'))
+	@todo.save (err) =>
+		if err?
+			res.json(err, 500)
+		else
+			res.json @todo
+			
 # Get specific todos
 app.get '/api/todos/:id', (req, res) ->
 	res.json {}
