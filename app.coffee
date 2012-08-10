@@ -8,4 +8,4 @@ require("#{__dirname}/src/controllers/home_controller")
 
 # Start server:
 app.listen(3000)
-console.log(" Express server listening on port 3000 in %s mode", app.settings.env)
+console.log(" Express server listening on port %s 3000 in %s mode", app.port, app.settings.env)
