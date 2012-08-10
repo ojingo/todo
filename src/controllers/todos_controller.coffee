@@ -44,4 +44,10 @@ app.put '/api/todos/:id', (req, res) ->
 
 # Delete specific todos
 app.delete '/api/todos/:id', (req, res) ->
-	res.json {}
+	Todo.findById req.param('id'), (err, @todo) =>
+		if err?
+			res.json(err, 500)
+		else
+			@todo.remove()
+			res.json @todo
+
