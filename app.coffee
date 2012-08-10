@@ -3,6 +3,9 @@ global.express = require('express')
 global.app = express()
 require("#{__dirname}/src/configuration")
 
+# Set up the database
+require("#{__dirname}/src/models/database")
+
 # Set up a route for the homepage:
 require("#{__dirname}/src/controllers/home_controller")
 
