@@ -18,10 +18,15 @@ app.post '/api/todos', (req, res) ->
 			res.json(err, 500)
 		else
 			res.json @todo
-			
+
 # Get specific todos
 app.get '/api/todos/:id', (req, res) ->
-	res.json {}
+	Todo.findById req.param('id'), (err, @todo) =>
+		if err?
+			res.json(err, 500)
+		else
+			res.json @todo
+
 
 # Update specific todos
 app.put '/api/todos/:id', (req, res) ->
